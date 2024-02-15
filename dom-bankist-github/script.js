@@ -7,6 +7,8 @@ const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
+
+const nav = document.querySelector('.nav');
 ///////////////////////////////////////
 // Modal window
 
@@ -73,3 +75,27 @@ tabsContainer.addEventListener('click', function (e) {
     .querySelector(`.operations__content--${clicked.dataset.tab}`)
     .classList.add('operations__content--active');
 });
+
+///////////////////////////////////////
+// Menu fade animation
+
+const handleHover = function (e) {
+  //
+  if (e.target.classList.contains('nav__link')) {
+    // Matching (Gavigot links daachira tu ara martla da shevinaxot linki)
+    const link = e.target;
+    // Linkis siblingebi (1. Avidet parentshi (.nav__links) da chamovidet tito nav linkamde)
+    const siblings = link.closest('.nav__links').querySelectorAll('.nav__link');
+    // Logo (1. avidet parentshi, vipovot img rac aris logo)
+    const logo = link.closest('.nav').querySelector('img');
+
+    siblings.forEach(el => {
+      if (el !== link) el.style.opacity = this;
+    });
+    logo.style.opacity = this;
+  }
+};
+
+nav.addEventListener('mouseover', handleHover.bind(0.5));
+
+nav.addEventListener('mouseout', handleHover.bind(1));
