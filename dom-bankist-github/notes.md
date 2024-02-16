@@ -47,3 +47,5 @@ Lazy loading images are good for website performance, it helps in optimizing ima
     });
 
     to avoid wait until good image is loaded and then remove filter
+
+    200 - Building slider component

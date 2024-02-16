@@ -13,6 +13,12 @@ const header = document.querySelector('.header');
 const nav = document.querySelector('.nav');
 
 const sections = document.querySelectorAll('.section');
+
+const slides = document.querySelectorAll('.slide');
+const btnLeft = document.querySelector('.slider__btn--left');
+const btnRight = document.querySelector('.slider__btn--right');
+const slider = document.querySelector('.slider');
+
 ///////////////////////////////////////
 // Modal window
 
@@ -162,3 +168,39 @@ const imgObserver = new IntersectionObserver(loadImg, {
 });
 
 imgTargets.forEach(img => imgObserver.observe(img));
+
+///////////////////////////////////////
+// Lazy loading image
+
+let currentSlide = 0;
+const maxSlides = slides.length - 1;
+
+const goToSlide = function (slide) {
+  slides.forEach((s, i) => {
+    s.style.transform = `translateX(${(i - slide) * 100}%)`;
+  });
+};
+
+const nextSlide = function () {
+  if (currentSlide == maxSlides) {
+    currentSlide = 0;
+  } else {
+    currentSlide++;
+  }
+  goToSlide(currentSlide);
+};
+
+const previousSlide = function () {
+  if (currentSlide == 0) {
+    currentSlide = maxSlides;
+  } else {
+    currentSlide--;
+  }
+  goToSlide(currentSlide);
+};
+
+goToSlide(0);
+
+btnRight.addEventListener('click', nextSlide);
+
+btnLeft.addEventListener('click', previousSlide);
