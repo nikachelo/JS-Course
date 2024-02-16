@@ -18,6 +18,7 @@ const slides = document.querySelectorAll('.slide');
 const btnLeft = document.querySelector('.slider__btn--left');
 const btnRight = document.querySelector('.slider__btn--right');
 const slider = document.querySelector('.slider');
+const dotContainer = document.querySelector('.dots');
 
 ///////////////////////////////////////
 // Modal window
@@ -170,15 +171,35 @@ const imgObserver = new IntersectionObserver(loadImg, {
 imgTargets.forEach(img => imgObserver.observe(img));
 
 ///////////////////////////////////////
-// Lazy loading image
+// Slider
 
 let currentSlide = 0;
 const maxSlides = slides.length - 1;
+
+const createDots = function () {
+  slides.forEach((_, i) => {
+    dotContainer.insertAdjacentHTML(
+      'beforeend',
+      `<button class="dots__dot" data-slide="${i}"></button>`
+    );
+  }); // _ = throwaway variable cuz we do not need pseudocurrent variable
+};
+
+const setActiveDot = function (slide) {
+  document
+    .querySelectorAll('.dots__dot')
+    .forEach(dot => dot.classList.remove('dots__dot--active'));
+  document
+    .querySelector(`.dots__dot[data-slide="${slide}"]`)
+    .classList.add('dots__dot--active');
+};
 
 const goToSlide = function (slide) {
   slides.forEach((s, i) => {
     s.style.transform = `translateX(${(i - slide) * 100}%)`;
   });
+  currentSlide = slide;
+  setActiveDot(slide);
 };
 
 const nextSlide = function () {
@@ -199,8 +220,21 @@ const previousSlide = function () {
   goToSlide(currentSlide);
 };
 
+createDots();
 goToSlide(0);
 
 btnRight.addEventListener('click', nextSlide);
 
 btnLeft.addEventListener('click', previousSlide);
+
+document.addEventListener('keydown', function (e) {
+  if (e.key == 'ArrowLeft') previousSlide();
+  if (e.key == 'ArrowRight') nextSlide();
+});
+
+dotContainer.addEventListener('click', function (e) {
+  if (e.target.classList.contains('dots__dot')) {
+    goToSlide(e.target.dataset.slide);
+    setActiveDot(e.target.dataset.slide);
+  }
+});
