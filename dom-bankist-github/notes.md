@@ -48,4 +48,24 @@ Lazy loading images are good for website performance, it helps in optimizing ima
 
     to avoid wait until good image is loaded and then remove filter
 
-    200 - Building slider component
+200 - Building slider component
+
+202 - Lifecycle DOM events
+
+DOMContentLoaded - waits for html parsing and dom tree building
+
+If we want to wait for it, we do not need to add this event listened, we can include js in the end of html.
+
+load - waits page to load fully, images, and all stuff. It fires on window: window.addEventListener('load')
+
+beforeunload - Fires before user closes or leaves page, like closing the tab, it fires on window too: window.addEventListener('beforeunload'); We need to prevent default.
+we need returnValue to empty value:
+e.returnValue = '';
+
+203 - Efficient script loading:Regular, Defer and Async
+Regular (Head) - Parsing HTML --> Wating (Fetch script, Execute) --> Finish Parsing
+Regular (Body end) - Parsing HTML --> Fetch script and execute
+
+Async (Head) - Parsing HTML (Fetching) --> Waiting (Execute) -> Finish Parsing ----- Use for 3rd-pary scripts where order doesn't matter (Google analytics)
+
+Defer (Head) - Parsing HTML (Fetching) --> Execute ----- This is overall the best solution, for own scripts, including a library when order matters.
