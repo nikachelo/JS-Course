@@ -28,3 +28,22 @@ Usage:
 Create an IntersectionObserver instance with a callback.
 Specify the target element(s) to observe.
 Implement the logic in the callback to respond to intersection changes.
+
+199 - Lazy loading images
+
+Lazy loading images are good for website performance, it helps in optimizing images.
+
+1.  we need two copy on 1 image, low res and high res
+
+2.  We need class to like: "lazy-img" to blur low res pic
+
+3.  low res img is loaded from html: img src: ...
+    high res img is loaded from data-src programatically
+
+    'load' is an regular event and js uses it when pictures are loaded, so we made this code:
+
+    entry.target.addEventListener('load', function () {
+    entry.target.classList.remove('lazy-img ');
+    });
+
+    to avoid wait until good image is loaded and then remove filter

@@ -11,6 +11,8 @@ const section1 = document.querySelector('#section--1');
 const header = document.querySelector('.header');
 
 const nav = document.querySelector('.nav');
+
+const sections = document.querySelectorAll('.section');
 ///////////////////////////////////////
 // Modal window
 
@@ -119,8 +121,6 @@ headerObserver.observe(header);
 ///////////////////////////////////////
 // Show elements on scroll
 
-const sections = document.querySelectorAll('.section');
-
 const showSection = function (entries, observer) {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -139,3 +139,26 @@ sections.forEach(section => {
   sectionObserver.observe(section);
   section.classList.add('section--hidden');
 });
+
+///////////////////////////////////////
+// Lazy loading image
+const imgTargets = document.querySelectorAll('img[data-src]');
+
+const loadImg = function (entries, observer) {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // Shecvalot src data-src -it
+      entry.target.src = entry.target.dataset.src;
+      entry.target.addEventListener('load', function () {
+        entry.target.classList.remove('lazy-img ');
+      });
+      observer.unobserve(entry.target);
+    }
+  });
+};
+
+const imgObserver = new IntersectionObserver(loadImg, {
+  threshold: 0,
+});
+
+imgTargets.forEach(img => imgObserver.observe(img));
