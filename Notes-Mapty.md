@@ -29,3 +29,7 @@ Common format of User story - As a [type of user], I want [an action] so that [a
 232 - Using geolocation api
 
 navigator.geolocation.getCurrentPosition - has two callbacks, for succesfull result and error. succesful callback has one parameter - position
+
+237 - Refactoring architecture
+
+Usually event listeners in class are in constructor
