@@ -80,43 +80,73 @@ const Car = function (make, speed) {
 // tesla.chargeBattery(90);
 // console.log(tesla);
 
-class Person {
-  constructor(fullName, bithYear) {
-    this.fullName = fullName;
-    this.bithYear = bithYear;
-  }
-  calcAge() {
-    console.log(2037 - this.bithYear);
-  }
-  greet() {
-    console.log(`Hello ${this.fullName}`);
+// class Person {
+//   constructor(fullName, bithYear) {
+//     this.fullName = fullName;
+//     this.bithYear = bithYear;
+//   }
+//   calcAge() {
+//     console.log(2037 - this.bithYear);
+//   }
+//   greet() {
+//     console.log(`Hello ${this.fullName}`);
+//   }
+
+//   get age() {
+//     return 2037 - this.bithYear;
+//   }
+
+//   set fullName(name) {
+//     if (name.includes(" ")) this._fullName = name;
+//     else alert(`${name} is not a full name!`);
+//   }
+
+//   get fullName() {
+//     return this._fullName;
+//   }
+// }
+
+// class Student extends Person {
+//   constructor(fullName, bithYear, course) {
+//     // Always needs to happen first!
+//     super(fullName, bithYear);
+//     this.course = course;
+//   }
+
+//   introduce() {
+//     console.log(`Hello, my name is ${this.fullName}`);
+//   }
+// }
+
+// const Niko = new Student("Nikoi Chelo", 2002, "CS");
+// Niko.introduce();
+
+class Account {
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+    this.pin = pin;
+    this._movements = [];
+    this.locale = navigator.language;
+
+    console.log("Thanks for opening account");
   }
 
-  get age() {
-    return 2037 - this.bithYear;
+  deposit(val) {
+    this._movements.push(val);
+  }
+  withdraw(val) {
+    this._movements.push(-val);
   }
 
-  set fullName(name) {
-    if (name.includes(" ")) this._fullName = name;
-    else alert(`${name} is not a full name!`);
+  approveLoan(val) {
+    return true;
   }
 
-  get fullName() {
-    return this._fullName;
+  askLoan(val) {
+    if (this.approveLoan) {
+      this.deposit(val);
+      console.log(`Loan approved: ${val}`);
+    }
   }
 }
-
-class Student extends Person {
-  constructor(fullName, bithYear, course) {
-    // Always needs to happen first!
-    super(fullName, bithYear);
-    this.course = course;
-  }
-
-  introduce() {
-    console.log(`Hello, my name is ${this.fullName}`);
-  }
-}
-
-const Niko = new Student("Nikoi Chelo", 2002, "CS");
-Niko.introduce();

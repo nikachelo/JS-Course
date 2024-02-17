@@ -58,3 +58,16 @@ class Person {
 220 - Inheritance between classes - ES6
 
 To make a class inherit from another class we need keyword `extends` and super class
+
+223 - Encapsulation - protected
+
+Encapsulation means to keep some properties and methods private inside the class
+
+JS doesn't have real protected so we are using convention like this: \_variable to know that \_variable is protected
+
+224 - Encapsulation - private fields
+
+        1. Public fields - locale = some shit
+        2. Private fields - #movements = []
+        3. Public methods - function(param){}
+        4. Private methods - _function(param){}
