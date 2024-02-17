@@ -36,3 +36,25 @@ All methods besides constructor method is written on class.prototype.
 214 - Setters and Getters
 
 Every object in JS can have setter and getter properties. We call them Accessor properties.
+
+So after 1 hour I finally saw how this piece of code works:
+
+```javascript
+class Person {
+  constructor(fullName, bithYear) {
+    this.fullName = fullName; //<------By setting fullName and it has same name as setter below, it triggers setter automatically and sets _fullName as name
+    this.bithYear = bithYear;
+  }
+  set fullName(name) {
+    if (name.includes(" ")) this._fullName = name;
+    else alert(`${name} is not a full name!`);
+  }
+  get fullName() {
+    return this._fullName;
+  }
+}
+```
+
+220 - Inheritance between classes - ES6
+
+To make a class inherit from another class we need keyword `extends` and super class

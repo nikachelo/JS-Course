@@ -56,26 +56,67 @@ const Car = function (make, speed) {
   this.speed = speed;
 };
 
-Car.prototype.accelerate = function () {
-  this.speed += 10;
-  console.log(`${this.make} is going at ${this.speed} km/h`);
-};
+// Car.prototype.accelerate = function () {
+//   this.speed += 10;
+//   console.log(`${this.make} is going at ${this.speed} km/h`);
+// };
 
-Car.prototype.brake = function () {
-  this.speed -= 5;
-  console.log(`${this.make} is going at ${this.speed} km/h`);
-};
+// Car.prototype.brake = function () {
+//   this.speed -= 5;
+//   console.log(`${this.make} is going at ${this.speed} km/h`);
+// };
 
-const EV = function (make, speed, charge) {
-  Car.call(this, make, speed);
-  this.charge = charge;
-};
+// const EV = function (make, speed, charge) {
+//   Car.call(this, make, speed);
+//   this.charge = charge;
+// };
 
-EV.prototype = Object.create(Car.prototype);
-EV.prototype.chargeBattery = function (chargeTo) {
-  this.charge = chargeTo;
-};
+// EV.prototype = Object.create(Car.prototype);
+// EV.prototype.chargeBattery = function (chargeTo) {
+//   this.charge = chargeTo;
+// };
 
-const tesla = new EV("Tesla", 120, 23);
-tesla.chargeBattery(90);
-console.log(tesla);
+// const tesla = new EV("Tesla", 120, 23);
+// tesla.chargeBattery(90);
+// console.log(tesla);
+
+class Person {
+  constructor(fullName, bithYear) {
+    this.fullName = fullName;
+    this.bithYear = bithYear;
+  }
+  calcAge() {
+    console.log(2037 - this.bithYear);
+  }
+  greet() {
+    console.log(`Hello ${this.fullName}`);
+  }
+
+  get age() {
+    return 2037 - this.bithYear;
+  }
+
+  set fullName(name) {
+    if (name.includes(" ")) this._fullName = name;
+    else alert(`${name} is not a full name!`);
+  }
+
+  get fullName() {
+    return this._fullName;
+  }
+}
+
+class Student extends Person {
+  constructor(fullName, bithYear, course) {
+    // Always needs to happen first!
+    super(fullName, bithYear);
+    this.course = course;
+  }
+
+  introduce() {
+    console.log(`Hello, my name is ${this.fullName}`);
+  }
+}
+
+const Niko = new Student("Nikoi Chelo", 2002, "CS");
+Niko.introduce();
