@@ -20,3 +20,15 @@ API - Application Programming Interface - Piece of software that can be used by 
 249 - How the web works
 
 TCP - Transmission Control Protocol
+
+251 - Promises and Fetch API
+
+Promise - An object that is used as a placeholder for the future result of an async function
+
+1. We no longer need to rely on events and callbacks passed into async functions to handle async results
+2. Instead of nesting callbaks, we can chain promises for a sequence of async operations: escaping callback hell
+
+The Promise lifecycle
+
+1. Pending - Before the future value is avaliable
+2. Settled - Async task has finished, Fullfilled or Rejected
